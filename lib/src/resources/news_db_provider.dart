@@ -14,31 +14,33 @@ class NewsDbProvider implements Source, Cache {
 
   void init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    final path = join(documentsDirectory.path, "items.db");
-    db = await openDatabase(path, version: 1,
-        onCreate: (Database newDb, int version) {
-      newDb.execute("""
-        CREATE TABLE Items
-          (
-            id INTEGER PRIMARY KEY,
-            deleted INTEGER,
-            type TEXT,
-            by TEXT,
-            time INTEGER,
-            text TEXT,
-            dead INTEGER,
-            parent INTEGER
-            kids BLOB,
-            url TEXT,
-            score INTEGER,
-            title STRING,
-            descendants INTEGER
-          )
-      """);
-    });
+    final path = join(documentsDirectory.path, "items2.db");
+    db = await openDatabase(
+      path, 
+      version: 1,
+      onCreate: (Database newDb, int version) {
+        newDb.execute("""
+          CREATE TABLE Items
+            (
+              id INTEGER PRIMARY KEY,
+              deleted INTEGER,
+              type TEXT,
+              by TEXT,
+              time INTEGER,
+              text TEXT,
+              dead INTEGER,
+              parent INTEGER,
+              kids BLOB,
+              url TEXT,
+              score INTEGER,
+              title STRING,
+              descendants INTEGER
+            )
+        """);
+      },
+    );
   }
 
-  //TODO: local storage for top id
   Future<List<int>> fetchTopIds() {
     return null;
   }
@@ -57,7 +59,10 @@ class NewsDbProvider implements Source, Cache {
   }
 
   Future<int> addItem(ItemModel item) {
-    return db.insert("Items", item.toMapForDb());
+    return db.insert(
+      "Items",
+      item.toMapForDb(),
+    );
   }
 }
 

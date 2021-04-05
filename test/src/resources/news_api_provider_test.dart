@@ -23,7 +23,7 @@ void main() {
       return Response((jsonEncode(jsonMap)), 200);
     });
 
-    final item = await newsApi.fetchItem(999);
+    final item = await newsApi.fetchItem(100);
 
     expect(item.id, 123);
   });
