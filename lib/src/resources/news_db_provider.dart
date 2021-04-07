@@ -16,7 +16,7 @@ class NewsDbProvider implements Source, Cache {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     final path = join(documentsDirectory.path, "items3.db");
     db = await openDatabase(
-      path, 
+      path,
       version: 1,
       onCreate: (Database newDb, int version) {
         newDb.execute("""
@@ -63,6 +63,10 @@ class NewsDbProvider implements Source, Cache {
       "Items",
       item.toMapForDb(),
     );
+  }
+
+  Future<int> clear() {
+    return db.delete("Items");
   }
 }
 
