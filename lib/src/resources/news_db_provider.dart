@@ -1,7 +1,9 @@
-import 'package:sqflite/sqflite.dart';
-import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+
 import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:sqflite/sqflite.dart';
+
 import '../models/item_model.dart';
 import 'repository.dart';
 
@@ -14,7 +16,7 @@ class NewsDbProvider implements Source, Cache {
 
   void init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    final path = join(documentsDirectory.path, "items3.db");
+    final path = join(documentsDirectory.path, "items5.db");
     db = await openDatabase(
       path,
       version: 1,
@@ -62,6 +64,7 @@ class NewsDbProvider implements Source, Cache {
     return db.insert(
       "Items",
       item.toMapForDb(),
+      conflictAlgorithm: ConflictAlgorithm.ignore
     );
   }
 
