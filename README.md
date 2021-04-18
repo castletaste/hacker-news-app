@@ -1,16 +1,10 @@
 # news_app
+Flutter project I created to study bloc architecture 
 
-A new Flutter project.
+## Description
 
-## Getting Started
+This is a simple app for viewing news and commentary from https://news.ycombinator.com/ .
 
-This project is a starting point for a Flutter application.
+I used bloc as the architecture of the application. I made two blocs. The first bloc is used for news data and headlines, the second is used for comment data. 
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The application also has a cache where the data is added after a successful request to the api.
