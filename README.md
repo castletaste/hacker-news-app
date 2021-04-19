@@ -1,4 +1,4 @@
-# news_app
+# Hacker news flutter app
 Flutter project I created to study bloc architecture 
 
 ## Description
